@@ -1,35 +1,49 @@
 window.onload = function() {
     const canvas = document.getElementById("canvas")
     const ctx = canvas.getContext('2d')
-    const speed = 200
+    const speed = 400
     const pic_array = ['images/Untitled.png', 'images/Untitled(1).png', 'images/Untitled(2).png']
     
     var t = Date.now()
     var timePassed = (Date.now() - t) / 1000
     var y = 5
     var x = 5
-    var direction = true
     var currentindex = 0
 
     console.log(currentindex);
 
-    function updateSlide() {
-        const slides = document.getElementById("slides")
-        slides.src = pic_array[currentindex]
-        console.log("\n" + currentindex + "\n");
+    function updateSlide(direction) {
+        if (direction == "right") {
+            const slides = document.getElementById("slides")
+            console.log("\n" + currentindex + "\n");
+            slides.classList.toggle("slide-right")
+            setTimeout(() => {
+                slides.src = pic_array[currentindex]
+                slides.classList.toggle("slide-right")
+            }, 1000)
+
+        } else {
+            const slides = document.getElementById("slides")    
+            console.log("\n" + currentindex + "\n");
+            slides.classList.toggle("slide-left")
+            setTimeout(() => {
+                slides.src = pic_array[currentindex]
+                slides.classList.toggle("slide-left")
+            }, 1000)
+        }
     }
     
     window.addEventListener('keydown', function(e) {
         switch(e.key) {
             case 'd':
-                if (x < 445) {
+                if (x < canvas.offsetWidth - 55) {
                     x+=speed * timePassed
-                } else if(currentindex == 2 && (x < 444 && x > 446)){
-                    break
-                } else {
+                } else if(currentindex < 2) {
                     currentindex++
                     x = 5
-                    updateSlide()
+                    updateSlide("right")
+                } else {
+                    return
                 }
                 break
             case 'a':
@@ -37,8 +51,8 @@ window.onload = function() {
                     x-=speed * timePassed
                 } else if(currentindex > 0) {
                     currentindex--
-                    x = 445
-                    updateSlide()
+                    x = canvas.offsetWidth - 55
+                    updateSlide("left")
                 }
                 break
         }
@@ -52,7 +66,7 @@ window.onload = function() {
         ctx.clearRect(0, 0, 500, 500);
     
         ctx.fillStyle="red";
-        ctx.fillRect(x, y, 50, 50);
+        ctx.fillRect(x, y, canvas.offsetWidth / 50, canvas.offsetWidth / 50);
     
         window.requestAnimationFrame(draw);
     }

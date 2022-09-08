@@ -1,3 +1,28 @@
 #canvas {
-    border: 2px solid gray;
+    border: 1px solid gray;
+    width: 100%;
+    margin: 0px;
+}
+.slide-right {
+    animation: slide-animation-right 1s;
+}
+.slide-left {
+    animation: slide-animation-left 1s;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#slides {
+    box-sizing: border-box;
+    max-width: 500px;
+    width: 100%;
+}
+@keyframes slide-animation-right {
+    to {transform: translateX(-100%);}
+}
+@keyframes slide-animation-left {
+    to {transform: translateX(100%);}
 }
