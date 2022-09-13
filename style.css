@@ -1,7 +1,5 @@
 #canvas {
     border: 1px solid gray;
-    width: 100%;
-    margin: 0px;
 }
 .slide-right {
     animation: slide-animation-right 1s;

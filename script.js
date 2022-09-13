@@ -42,8 +42,6 @@ window.onload = function() {
                     currentindex++
                     x = 5
                     updateSlide("right")
-                } else {
-                    return
                 }
                 break
             case 'a':
@@ -66,7 +64,7 @@ window.onload = function() {
         ctx.clearRect(0, 0, 500, 500);
     
         ctx.fillStyle="red";
-        ctx.fillRect(x, y, canvas.offsetWidth / 50, canvas.offsetWidth / 50);
+        ctx.fillRect(x, y, 50, 50);
     
         window.requestAnimationFrame(draw);
     }
